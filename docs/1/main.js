@@ -17,6 +17,10 @@ HoverMgr = function(el) {
   // アニメーション中かどうか
   this.isPlaying = false;
 
+	this.scaleVal = 0;
+
+
+
 };
 
 // 初期化
@@ -28,6 +32,8 @@ HoverMgr.prototype.init = function() {
     scaleX:0
   });
 
+	// var colorVal = map(this.scaleVal, 0.0, 255.0, 0.0, 1.0);
+	// console.log("val", colorVal);
 };
 
 // ロールオーバー
@@ -55,10 +61,15 @@ HoverMgr.prototype._startRollOver = function() {
 
   this.isPlaying = true;
   TweenMax.to(this.tg, 0.6, {
-    scaleX:1,
+    scaleX : 1,
+		rotationX: 45,
+		skewY:50,
     ease:Expo.easeOut,
     onComplete:this._eCompleteRollOver.bind(this)
   });
+
+	// var result = this.tg.css('border');
+	// console.log( result );
 
 };
 
@@ -67,7 +78,9 @@ HoverMgr.prototype._startRollOut = function() {
 
   this.isPlaying = true;
   TweenMax.to(this.tg, 0.5, {
-    scaleX:0,
+    scaleX: 0,
+    rotationX: 0,
+		skewY: 0,
     ease:Expo.easeInOut,
     onComplete:this._eCompleteRollOut.bind(this)
   });
